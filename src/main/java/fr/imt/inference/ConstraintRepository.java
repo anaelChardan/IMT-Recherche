@@ -3,10 +3,8 @@ package fr.imt.inference;
 import fr.imt.inference.logger.Logger;
 import fr.imt.inference.type.Type;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 public class ConstraintRepository {
 
@@ -45,7 +43,7 @@ public class ConstraintRepository {
         return null; // todo -> turn not to be a singleton anymore
     }
 
-    public ConstraintRepository applySubstitution(Substitution headSubtitution) {
+    public ConstraintRepository applySubstitution(SubstitutionCollection headSubtitution) {
         return null; // todo -> turn not to be a singleton anymore
     }
 }
