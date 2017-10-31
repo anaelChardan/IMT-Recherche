@@ -21,20 +21,20 @@ public class Application implements Expression {
     }
 
     @Override
-    public Type infer(Environment env) {
+    public Type infer(Environment env, ConstraintRepository constraintRepository) {
         logger.debug("Current exp " + this.toString());
 
-        Type bodyType = this.body.infer(env);
+        Type bodyType = this.body.infer(env, constraintRepository);
 
         logger.debug("Type for body `" + this.body + "` is " + bodyType);
 
-        Type argumentType = this.argument.infer(env);
+        Type argumentType = this.argument.infer(env, constraintRepository);
 
         logger.debug("Type for argument `" + this.argument + "` is " + argumentType);
 
         TypeVariable returnType = FreshVariableProvider.getInstance().provideFresh();
 
-        ConstraintRepository.getInstance().uni(bodyType, new ArrowType(argumentType, returnType));
+        constraintRepository.uni(bodyType, new ArrowType(argumentType, returnType));
 
         return returnType;
     }
