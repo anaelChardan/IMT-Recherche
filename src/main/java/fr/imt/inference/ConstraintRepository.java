@@ -6,7 +6,7 @@ import fr.imt.inference.type.Type;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ConstraintRepository {
+public class ConstraintRepository implements SubstitutionApplier<ConstraintRepository> {
 
     private Logger logger = new Logger();
 
@@ -43,6 +43,7 @@ public class ConstraintRepository {
         return null; // todo -> turn not to be a singleton anymore
     }
 
+    @Override
     public ConstraintRepository applySubstitution(SubstitutionCollection headSubtitution) {
         return null; // todo -> turn not to be a singleton anymore
     }
