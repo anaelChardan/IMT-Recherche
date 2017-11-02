@@ -9,11 +9,10 @@ import fr.imt.inference.type.Type;
 public class Let implements Expression {
 
 
-    private Logger logger = new Logger();
-
     public final Variable identifier;
     public final Expression definition;
     public final Expression body;
+    private Logger logger = new Logger();
 
     public Let(Variable identifier, Expression definition, Expression body) {
         this.identifier = identifier;

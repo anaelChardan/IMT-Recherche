@@ -3,17 +3,16 @@ package fr.imt.inference.AST;
 import fr.imt.inference.ConstraintRepository;
 import fr.imt.inference.Environment;
 import fr.imt.inference.FreshVariableProvider;
-import fr.imt.inference.type.TypeVariable;
 import fr.imt.inference.logger.Logger;
 import fr.imt.inference.type.ArrowType;
 import fr.imt.inference.type.Type;
+import fr.imt.inference.type.TypeVariable;
 
 public class Lambda implements Expression {
 
-    private Logger logger = new Logger();
-
     public final Variable identifier;
     public final Expression body;
+    private Logger logger = new Logger();
 
     public Lambda(Variable identifier, Expression body) {
         this.identifier = identifier;

@@ -4,16 +4,15 @@ import fr.imt.inference.ConstraintRepository;
 import fr.imt.inference.Environment;
 import fr.imt.inference.FreshVariableProvider;
 import fr.imt.inference.logger.Logger;
-import fr.imt.inference.type.TypeVariable;
 import fr.imt.inference.type.ArrowType;
 import fr.imt.inference.type.Type;
+import fr.imt.inference.type.TypeVariable;
 
 public class Application implements Expression {
 
-    private Logger logger = new Logger();
-
     public final Expression body;
     public final Expression argument;
+    private Logger logger = new Logger();
 
     public Application(Expression body, Expression argument) {
         this.body = body;
