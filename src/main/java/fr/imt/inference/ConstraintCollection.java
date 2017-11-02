@@ -9,23 +9,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * ConstraintRepository is used in both phases of the algorithm, is it a good idea ?
+ * ConstraintCollection is used in both phases of the algorithm, is it a good idea ?
  */
-public class ConstraintRepository implements SubstitutionApplier<ConstraintRepository> {
+public class ConstraintCollection implements Substituable<ConstraintCollection> {
 
     private Logger logger = new Logger();
 
     private Deque<Constraint> constraints = new LinkedList<>();
 
-    public ConstraintRepository() {
+    public ConstraintCollection() {
         this.constraints = new LinkedList<>();
     }
 
-    public ConstraintRepository(Deque<Constraint> constraints) {
+    public ConstraintCollection(Deque<Constraint> constraints) {
         this.constraints = constraints;
     }
 
-    public void uni(Type t1, Type t2) {
+    public void add(Type t1, Type t2) {
         logger.debug("Adding constraint : (" + t1 + ", " + t2 + ")");
         constraints.add(new Constraint(t1, t2));
     }
@@ -38,20 +38,20 @@ public class ConstraintRepository implements SubstitutionApplier<ConstraintRepos
         return constraints.getFirst();
     }
 
-    public ConstraintRepository tail() {
+    public ConstraintCollection tail() {
         Deque<Constraint> newConstraints = new LinkedList<>();
         newConstraints.addAll(this.constraints);
         newConstraints.poll(); // remove the first element
-        return new ConstraintRepository(newConstraints); // todo -> turn not to be a singleton anymore
+        return new ConstraintCollection(newConstraints); // todo -> turn not to be a singleton anymore
     }
 
     @Override
-    public ConstraintRepository applySubstitution(SubstitutionCollection substitutions) {
+    public ConstraintCollection applySubstitution(SubstitutionCollection substitutions) {
         List<Constraint> newConstaints = this.constraints.stream()
                 .map(constraint -> constraint.applySubstitution(substitutions))
                 .collect(Collectors.toList());
 
-        return new ConstraintRepository(new LinkedList<>(newConstaints));
+        return new ConstraintCollection(new LinkedList<>(newConstaints));
     }
 
     @Override
